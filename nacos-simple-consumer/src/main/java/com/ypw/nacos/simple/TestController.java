@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
  * @author yupengwu
  */
 @RestController
-@NacosConfigurationProperties(dataId = "nacos-simple-consumer-config", autoRefreshed = true)
+//@NacosConfigurationProperties(dataId = "nacos-simple-consumer-config", autoRefreshed = true)
 public class TestController {
     @Value("${echoParam:123}")
     String echoParam;
