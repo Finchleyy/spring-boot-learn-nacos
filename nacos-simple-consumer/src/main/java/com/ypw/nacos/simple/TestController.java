@@ -1,7 +1,7 @@
 package com.ypw.nacos.simple;
 
+import com.alibaba.nacos.api.config.ConfigType;
 import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,13 @@ import org.springframework.web.client.RestTemplate;
  * @author yupengwu
  */
 @RestController
-//@NacosConfigurationProperties(dataId = "nacos-simple-consumer-config", autoRefreshed = true)
+@NacosConfigurationProperties(
+        groupId = "DEFAULT_GROUP",
+        type = ConfigType.PROPERTIES,
+        dataId = "test",
+        autoRefreshed = true)
 public class TestController {
-    @Value("${echoParam:123}")
+    @Value(value = "${echoParam:123}")
     String echoParam;
 
     @Autowired
