@@ -2,8 +2,10 @@ package com.ypw.nacos.simple;
 
 import com.alibaba.nacos.api.config.ConfigType;
 import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -12,11 +14,13 @@ import org.springframework.web.client.RestTemplate;
  * @author yupengwu
  */
 @RestController
-@NacosConfigurationProperties(
+//bootstrap.properties 中已经配置,这里不再生效
+/*@NacosConfigurationProperties(
         groupId = "DEFAULT_GROUP",
         type = ConfigType.PROPERTIES,
-        dataId = "test",
-        autoRefreshed = true)
+        dataId = "nacos-simple-consumer-dev.properties",
+        autoRefreshed = true)*/
+@RefreshScope
 public class TestController {
     @Value(value = "${echoParam:123}")
     String echoParam;
